@@ -1,0 +1,49 @@
+.player {
+    width: 80%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+    gap: 10px;
+
+    .video {
+        width: 100%;
+        height: 80%;
+        border-radius: 20px;
+        background-color: #cacaca;
+    }
+
+    .controls {
+        width: 50%;
+        height: 40px;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        user-select: none;
+
+        .play {
+            background-color: #4141c5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            padding: 10px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .fullscreen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #4141c5;
+            padding: 10px;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+}
