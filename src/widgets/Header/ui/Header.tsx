@@ -1,7 +1,8 @@
 import styles from './Header.module.scss'
 import { UploadButton } from '../../../features'
+import { IHeaderProps } from '../model/types/IHeaderProps'
 
-const Header: React.FC = () => {
+const Header: React.FC<IHeaderProps> = ({ setModal }) => {
 
 
     return (
@@ -11,7 +12,7 @@ const Header: React.FC = () => {
                     Video Player
                 </h1>
             </div>
-            <UploadButton onClick={() => console.log("file uploaded")} width='200px' height='60px'/>
+            <UploadButton onClick={() => setModal(true)} width='200px' height='60px'/>
         </header>
     )
 }
