@@ -2,14 +2,14 @@ import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import styles from './UploadModal.module.scss'
 import { IModalProps } from '../model/types/IModalProps'
 import { UploadButton } from '../../UploadButton/ui/UploadButton'
-
+import { useVideoStore } from '../../../entities'
 
 
 
 export const UploadModal: React.FC<IModalProps> = ({ setModal }) => {
 
     const [videoFile, setVideoFile] = useState<File | null>(null)
-    
+    const { setVideo } = useVideoStore()
 
 
     const modalRef = useRef<HTMLDivElement>(null)
@@ -43,6 +43,19 @@ export const UploadModal: React.FC<IModalProps> = ({ setModal }) => {
         }
     }
 
+    const confirmFile = () => {
+        if (videoFile) {
+            const videoSrc = URL.createObjectURL(videoFile)
+            setVideo({
+                title: videoFile.name,
+                source: videoSrc
+            })
+        } else {
+            return
+        }
+    }
+    
+
 
 
     return (
@@ -51,7 +64,7 @@ export const UploadModal: React.FC<IModalProps> = ({ setModal }) => {
                 <h2>Select <span>video</span> from local machine</h2>
                 {videoFile ? <div>
                     <p>{videoFile.name}</p>
-                    <UploadButton onClick={() => {}} text='Подтвердить' width='200px' height='40px'/>
+                    <UploadButton onClick={confirmFile} text='Подтвердить' width='200px' height='40px'/>
                 </div> : <div>
                     <input onChange={e => selectFiles(e)} className={styles.hidden} ref={filepickerRef} type="file" accept='video/*'/>
                     <UploadButton onClick={filepickerHandler} text='Upload video' width='200px' height='40px'/>
