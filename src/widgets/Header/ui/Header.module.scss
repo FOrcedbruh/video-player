@@ -6,10 +6,18 @@
     align-items: center;
     padding: 0 30px;
 
+    @media only screen and (max-width: 600px) {
+        padding: 0 5px;
+    }
+
     .logo {
         display: flex;
         justify-content: center;
         align-items: center;
+
+        @media only screen and (max-width: 600px) {
+            scale: 0.7;
+        }
 
         .h1 {
             padding: 0;

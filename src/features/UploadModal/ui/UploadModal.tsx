@@ -50,6 +50,7 @@ export const UploadModal: React.FC<IModalProps> = ({ setModal }) => {
                 title: videoFile.name,
                 source: videoSrc
             })
+            setModal(false)
         } else {
             return
         }

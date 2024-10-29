@@ -2,6 +2,10 @@ import styles from './Player.module.scss'
 import { useRef, useState } from 'react'
 import { useVideoStore } from '../../../entities'
 import defaultVideo from './../../../../public/videos/naturalVideo.mp4'
+import skipIcon from './../../../../public/icons/nextIcon.svg'
+import fullscreenIcon from './../../../../public/icons/fullIcon.svg'
+import pauseIcon from './../../../../public/icons/pauseIcon.svg'
+import playIcon from './../../../../public/icons/playIcon.svg'
 
 const Player: React.FC = () => {
 
@@ -25,14 +29,29 @@ const Player: React.FC = () => {
     const fullScreenHandler = () => {
         videoRef.current?.requestFullscreen()
     }
+
+    const forward = (seconds: number) => {
+        if (videoRef.current) {
+            videoRef.current.currentTime += seconds
+        }   
+    }
+
+    const backward = (seconds: number) => {
+        if (videoRef.current) {
+            videoRef.current.currentTime -= seconds
+        }   
+    }
     
 
     return (
         <section className={styles.player}>
-            <video loop ref={videoRef} className={styles.video}  autoPlay={true} src={video ? video.source : defaultVideo}></video>
+            <h3>{video ? video.title : ""}</h3>
+            <video onClick={play} loop ref={videoRef} className={styles.video}  autoPlay={true} src={video ? video.source : defaultVideo}></video>
             <section className={styles.controls}>
-                <div className={styles.play} onClick={play}>{isPlay ? "Pause" : "Play"}</div>
-                <div className={styles.fullscreen} onClick={fullScreenHandler}>Full screen</div>
+                <div className={styles.skip} onClick={() => backward(5)}><img style={{"rotate": '180deg'}} src={skipIcon} alt='' width={20} height={20}/></div>
+                <div className={styles.play} onClick={play}><img src={isPlay ? pauseIcon : playIcon} width={20} height={20} alt="" /></div>
+                <div className={styles.skip} onClick={() => forward(5)}><img src={skipIcon} alt='' width={20} height={20}/></div>
+                <div className={styles.fullscreen} onClick={fullScreenHandler}><img src={fullscreenIcon} width={20} height={20} alt="" /></div>
             </section>
         </section>
     )

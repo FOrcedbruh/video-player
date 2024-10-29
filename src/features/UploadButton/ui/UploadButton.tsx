@@ -7,7 +7,7 @@ const UploadButton: React.FC<IUploadBtnProps>  = ({ text, onClick, width, height
 
     return (
         <button onClick={onClick} style={{'width': width, 'height': height}} className={styles.btn}>
-            {text ? text : "Загрузить файл"}
+            {text ? text : "Upload video"}
         </button>
     )
 }
